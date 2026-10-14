@@ -71,3 +71,9 @@ On the tested local installation, `qwen3-vl:30b` consumed its output budget in r
 returned no usable answer even with `think:false`. Use a non-thinking/instruct variant for
 further local validation. The application does not automatically download models.
 See verification.md for the failed live checks and the upstream maintainer explanation.
+
+
+Validator 1.1 excludes whole, validly cited alphanumeric source IDs (such as FLEET-142)
+from the numeric-detail guard. Uncited identifiers, identifier prefixes and invented
+quantities remain subject to validation. Existing session drafts retain their original
+validation results; this change applies to subsequent generation.

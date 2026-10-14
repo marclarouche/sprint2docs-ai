@@ -33,3 +33,11 @@ behavior. This milestone has no Ollama generation or report exports.
 Validation includes relationship ambiguity, conflicting releases, unsupported types,
 injected source text, audience conflicts, immutable source preservation, human review,
 fictional expected outcomes, and Streamlit review/reset smoke tests.
+
+
+The change-review selector defaults to Pending records. Saving Approved, Rejected or
+Needs Clarification removes that record from the pending queue without deleting it.
+Turn on Show saved reviews to inspect or revise every saved decision. Status, audience,
+category and note are restored when revisiting a record; labels include source file and
+record number to distinguish similar tickets, PRs and changelog entries. Saving Pending
+keeps the record in the queue. The screen confirms saves and shows the pending count.

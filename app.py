@@ -49,6 +49,7 @@ def save_review(index):
     findings[index] = reviewed
     st.session_state.analysis_result = analysis.model_copy(update={"findings": tuple(findings)})
     st.session_state.pop("analysis_error", None)
+    st.session_state.analysis_saved_message = "Analysis review saved."
 
 
 def do_import(use_samples):
@@ -157,41 +158,67 @@ if result is not None:
                 )
                 st.success("Decision saved. The analysis table refreshes on your next interaction.")
     if analysis.findings:
-        index = st.selectbox(
-            "Change to review",
-            range(len(analysis.findings)),
-            format_func=lambda i: (
-                f"{i + 1}. {result.artifacts[i].artifact_id} — {result.artifacts[i].title}"
-            ),
-            key="analysis_selection",
-        )
-        finding = analysis.findings[index]
-        with st.container():
-            category = st.selectbox(
-                "Category",
-                CATEGORIES,
-                index=CATEGORIES.index(finding.category),
-                key=f"analysis_category_{index}",
+        statuses = ["pending", "approved", "rejected", "needs_clarification"]
+        status_labels = {
+            "pending": "Pending",
+            "approved": "Approved",
+            "rejected": "Rejected",
+            "needs_clarification": "Needs clarification",
+        }
+        pending_count = sum(f.review_status == "pending" for f in analysis.findings)
+        st.caption(f"{pending_count} of {len(analysis.findings)} changes awaiting review.")
+        show_saved = st.checkbox("Show saved reviews", key="analysis_show_saved")
+        review_indices = [
+            i for i, f in enumerate(analysis.findings) if show_saved or f.review_status == "pending"
+        ]
+        if st.session_state.get("analysis_saved_message"):
+            st.success(st.session_state.analysis_saved_message)
+        if not review_indices:
+            st.info(
+                "No pending changes. Turn on Show saved reviews to inspect or revise saved decisions."
             )
-            audience = st.selectbox(
-                "Audience",
-                AUDIENCES,
-                index=AUDIENCES.index(finding.audience),
-                key=f"analysis_audience_{index}",
+        else:
+            if st.session_state.get("analysis_selection") not in review_indices:
+                st.session_state.analysis_selection = review_indices[0]
+            index = st.selectbox(
+                "Change to review",
+                review_indices,
+                format_func=lambda i: (
+                    f"{i + 1}. {result.artifacts[i].artifact_id} — {result.artifacts[i].title} "
+                    f"[{status_labels[analysis.findings[i].review_status]}] "
+                    f"({result.artifacts[i].provenance.filename}, record "
+                    f"{result.artifacts[i].provenance.record_number})"
+                ),
+                key="analysis_selection",
             )
-            status = st.selectbox(
-                "Review decision",
-                ["pending", "approved", "rejected", "needs_clarification"],
-                key=f"analysis_status_{index}",
-            )
-            note = st.text_input(
-                "Review note", value=finding.reviewer_note or "", key=f"analysis_note_{index}"
-            )
-            st.button(
-                "Save analysis review", key="save_analysis", on_click=save_review, args=(index,)
-            )
-            if st.session_state.get("analysis_error"):
-                st.error(st.session_state.analysis_error)
+            finding = analysis.findings[index]
+            with st.container():
+                st.selectbox(
+                    "Category",
+                    CATEGORIES,
+                    index=CATEGORIES.index(finding.category),
+                    key=f"analysis_category_{index}",
+                )
+                st.selectbox(
+                    "Audience",
+                    AUDIENCES,
+                    index=AUDIENCES.index(finding.audience),
+                    key=f"analysis_audience_{index}",
+                )
+                st.selectbox(
+                    "Review decision",
+                    statuses,
+                    index=statuses.index(finding.review_status),
+                    key=f"analysis_status_{index}",
+                )
+                st.text_input(
+                    "Review note", value=finding.reviewer_note or "", key=f"analysis_note_{index}"
+                )
+                st.button(
+                    "Save analysis review", key="save_analysis", on_click=save_review, args=(index,)
+                )
+                if st.session_state.get("analysis_error"):
+                    st.error(st.session_state.analysis_error)
 
     st.subheader("Release note drafts")
     st.caption(

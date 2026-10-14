@@ -60,3 +60,35 @@ A non-thinking/instruct model remains necessary for the next live validation att
 
 The four upload scenarios pass structural and deterministic analysis checks. Their AI
 wording and semantic accuracy still require evaluation with a compatible model and human review.
+
+
+## Instruct-model live validation follow-up
+
+With explicit user approval, `qwen3-vl:4b-instruct` was installed locally; the prior
+30B model's files were retained. Digest:
+`ee4b975b58c17ce268cd19d40db35d5edc64603035d2ffc1fee1968eb0947f7b`.
+The one-ticket HarborDesk quick-start ran through `generate_release` and the real
+Ollama adapter with a 300-second timeout, 1,200 output-token limit, 8,192 context
+tokens and one record per batch. It returned complete status, two pending claims,
+one unresolved clarification question, zero held claims and no diagnostics.
+Original source IDs and exact excerpts passed deterministic validation.
+
+Elapsed time was about 251 seconds. This overlapped with the previous app generation,
+and both models were initially loaded on CPU; the 30B model was unloaded from RAM
+without deleting its installed files. This is not an isolated performance benchmark.
+The full FleetOps release was not rerun during this follow-up. The app's batch-size
+setting processes the selected release sequentially rather than selecting only one record.
+
+Human inspection remains required: for example, the model added “preserving original
+data integrity” to a timestamp statement, a broader inference than the cited excerpt
+establishes. Valid citations do not establish semantic correctness or deployment.
+
+
+## Review workflow and validator 1.1 follow-up
+
+October 14, 2026: 96 tests passed, including saved-review restoration, pending queue
+filtering, and numeric source-ID regression cases. Ruff, format checks, strict mypy,
+uv lock consistency and git whitespace checks passed. The frozen-dependency audit
+reported no known vulnerabilities. Validly cited whole alphanumeric IDs are exempted
+from quantity checking; invented quantities, uncited IDs and identifier prefixes remain
+flagged. Existing session drafts retain their original validation results.

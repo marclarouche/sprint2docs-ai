@@ -63,7 +63,7 @@ class GenerationResult(Model):
     created_at: str
     tool_version: str = "0.1.0"
     prompt_version: str = "release-notes-1.0"
-    validator_version: str = "source-excerpts-1.0"
+    validator_version: str = "source-excerpts-1.1"
     settings: GenerationSettings
     model_digest: str
     source_snapshot_sha256: str

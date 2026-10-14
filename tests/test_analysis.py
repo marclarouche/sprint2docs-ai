@@ -137,3 +137,67 @@ def test_ui_review_saves_and_new_import_resets():
     app.run()
     assert not app.exception
     assert app.session_state["analysis_result"].findings[0].reviewer_note is None
+
+
+def test_ui_completed_review_leaves_queue_and_restores_saved_decision():
+    from streamlit.testing.v1 import AppTest
+
+    app = AppTest.from_file(
+        Path(__file__).resolve().parents[1] / "app.py", default_timeout=30
+    ).run()
+    app.button[0].click().run()
+    app.selectbox(key="analysis_audience_0").select("Administrator-facing").run()
+    app.selectbox(key="analysis_status_0").select("approved").run()
+    app.text_input(key="analysis_note_0").set_value(
+        "Enrollment confirmed; enforcement unknown."
+    ).run()
+    app.button(key="save_analysis").click().run()
+    assert not app.exception
+    selector = app.selectbox(key="analysis_selection")
+    assert selector.value != 0
+    assert not any(option.startswith("1. ") for option in selector.options)
+    assert app.session_state["analysis_result"].findings[0].review_status == "approved"
+    app.checkbox(key="analysis_show_saved").check().run()
+    app.selectbox(key="analysis_selection").select(0).run()
+    assert app.selectbox(key="analysis_status_0").value == "approved"
+    assert app.selectbox(key="analysis_audience_0").value == "Administrator-facing"
+    assert (
+        app.text_input(key="analysis_note_0").value == "Enrollment confirmed; enforcement unknown."
+    )
+    app.selectbox(key="analysis_selection").select(1).run()
+    app.selectbox(key="analysis_selection").select(0).run()
+    assert app.selectbox(key="analysis_status_0").value == "approved"
+    app.selectbox(key="analysis_status_0").select("pending").run()
+    app.button(key="save_analysis").click().run()
+    app.checkbox(key="analysis_show_saved").uncheck().run()
+    assert any(
+        option.startswith("1. ") for option in app.selectbox(key="analysis_selection").options
+    )
+    assert not app.exception
+
+
+def test_ui_review_queue_empty_retains_all_records():
+    from streamlit.testing.v1 import AppTest
+
+    app = AppTest.from_file(
+        Path(__file__).resolve().parents[1] / "app.py", default_timeout=30
+    ).run()
+    app.button[0].click().run()
+    original = app.session_state["import_result"]
+    analysis = app.session_state["analysis_result"]
+    app.session_state["analysis_result"] = analysis.model_copy(
+        update={
+            "findings": tuple(
+                f.model_copy(update={"review_status": "approved", "reviewer_note": "Reviewed"})
+                for f in analysis.findings
+            )
+        }
+    )
+    app.run()
+    assert not any(s.key == "analysis_selection" for s in app.selectbox)
+    assert any("No pending changes" in i.value for i in app.info)
+    assert app.session_state["import_result"] == original
+    app.checkbox(key="analysis_show_saved").check().run()
+    assert len(app.selectbox(key="analysis_selection").options) == 9
+    assert app.selectbox(key="analysis_status_0").value == "approved"
+    assert not app.exception
