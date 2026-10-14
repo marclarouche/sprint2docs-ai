@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "ticket",
+  "fictional": true,
+  "project": "FleetOps Demo",
+  "release_id": "2.4.0",
+  "records": [
+    {
+      "id": "FLEET-142",
+      "title": "Add administrator MFA enrollment",
+      "description": "Adds TOTP enrollment for administrators. Whether enrollment is mandatory requires confirmation.",
+      "status": "done",
+      "release_id": "2.4.0",
+      "change_type": "new_feature",
+      "component": "identity",
+      "related_ids": [
+        "PR-204"
+      ],
+      "labels": [
+        "security"
+      ],
+      "url": "https://example.invalid/tickets/FLEET-142",
+      "owner": "Fictional FleetOps team"
+    }
+  ]
+}

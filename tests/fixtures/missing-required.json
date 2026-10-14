@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "ticket",
+  "fictional": true,
+  "project": "FleetOps Demo",
+  "release_id": "2.4.0",
+  "records": [
+    {
+      "title": "Missing original ID"
+    },
+    {
+      "id": "BAD-2"
+    }
+  ]
+}

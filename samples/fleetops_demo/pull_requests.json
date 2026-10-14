@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "pull_request",
+  "fictional": true,
+  "project": "FleetOps Demo",
+  "release_id": "2.4.0",
+  "records": [
+    {
+      "id": "PR-204",
+      "title": "Implement TOTP enrollment workflow",
+      "description": "Adds administrator enrollment UI. Source ticket: FLEET-142.",
+      "status": "merged",
+      "release_id": "2.4.0",
+      "change_type": "new_feature",
+      "component": "identity",
+      "related_ids": [
+        "FLEET-142"
+      ],
+      "labels": [
+        "security"
+      ],
+      "url": "https://example.invalid/pull/204",
+      "reviewers": [
+        "Fictional reviewer"
+      ]
+    },
+    {
+      "id": "PR-205",
+      "title": "Fix synchronization retries",
+      "description": "Retry handling changed. This record does not establish deployment or speed improvement.",
+      "status": "merged",
+      "release_id": "2.4.0",
+      "change_type": "bug_fix",
+      "component": "dispatch",
+      "related_ids": [
+        "FLEET-143"
+      ],
+      "labels": [
+        "sync"
+      ],
+      "url": "https://example.invalid/pull/205"
+    },
+    {
+      "id": "PR-206",
+      "title": "Improve route synchronization",
+      "description": "Similar title to FLEET-143; no explicit relationship supplied. Keep separate pending review.",
+      "status": "open",
+      "release_id": "2.4.0",
+      "change_type": null,
+      "component": "dispatch",
+      "related_ids": [],
+      "labels": [],
+      "url": "https://example.invalid/pull/206"
+    }
+  ]
+}

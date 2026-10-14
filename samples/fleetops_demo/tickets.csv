@@ -1,0 +1,4 @@
+id,title,description,status,release_id,change_type,component,related_ids,labels,url,owner
+FLEET-142,Add administrator MFA enrollment,Adds TOTP enrollment for administrators. Whether enrollment is mandatory requires confirmation.,done,2.4.0,new_feature,identity,PR-204,security,https://example.invalid/tickets/FLEET-142,Fictional FleetOps team
+FLEET-143,Improve route synchronization,Resolves retry handling. No measured performance claim is supplied.,done,2.4.0,bug_fix,dispatch,PR-205,sync,https://example.invalid/tickets/FLEET-143,Fictional FleetOps team
+FLEET-144,Investigate export behavior,,in_progress,2.4.0,,reporting,,,,Fictional FleetOps team

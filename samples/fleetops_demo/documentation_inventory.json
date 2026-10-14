@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "documentation_inventory",
+  "fictional": true,
+  "project": "FleetOps Demo",
+  "release_id": "2.4.0",
+  "records": [
+    {
+      "document_id": "DOC-SEC-001",
+      "title": "FleetOps Demo administrator authentication guide",
+      "document_type": "administrator_guide",
+      "component": "identity",
+      "covered_features": [
+        "authentication",
+        "MFA enrollment"
+      ],
+      "description": "Fictional account-security procedures.",
+      "section_ids": [
+        "enrollment",
+        "recovery"
+      ],
+      "owner": "Fictional docs team"
+    },
+    {
+      "document_id": "DOC-DISPATCH-001",
+      "title": "FleetOps Demo dispatch troubleshooting",
+      "document_type": "troubleshooting",
+      "component": "dispatch",
+      "covered_features": [
+        "synchronization"
+      ],
+      "description": "Fictional retry and connection troubleshooting.",
+      "section_ids": [
+        "retry-behavior"
+      ]
+    }
+  ]
+}
