@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "pull_request",
+  "fictional": true,
+  "project": "HarborDesk \u2014 fictional support platform",
+  "records": [
+    {
+      "id": "PR-881",
+      "title": "Saved filter dialog and persistence",
+      "description": "Implements private saved filters for queue, priority, and assignee. Source ticket HD-381. Tests cover creation and reopening a saved filter. Deployment confirmation is not included.",
+      "status": "merged",
+      "release_id": "3.8.0",
+      "change_type": "new_feature",
+      "component": "support_workspace",
+      "related_ids": [
+        "HD-381"
+      ],
+      "labels": [
+        "customer-facing"
+      ],
+      "url": "https://example.invalid/harbordesk/PR-881",
+      "owner": "Fictional HarborDesk team"
+    },
+    {
+      "id": "PR-882",
+      "title": "Correct export header label",
+      "description": "Includes the workspace time zone name in the CSV export header; timestamp values remain unchanged. Source ticket HD-382.",
+      "status": "merged",
+      "release_id": "3.8.0",
+      "change_type": "bug_fix",
+      "component": "support_workspace",
+      "related_ids": [
+        "HD-382"
+      ],
+      "labels": [
+        "administrator-facing"
+      ],
+      "url": "https://example.invalid/harbordesk/PR-882",
+      "owner": "Fictional HarborDesk team"
+    }
+  ]
+}

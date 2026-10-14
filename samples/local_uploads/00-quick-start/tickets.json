@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "ticket",
+  "fictional": true,
+  "project": "HarborDesk \u2014 fictional support platform",
+  "records": [
+    {
+      "id": "HD-380",
+      "title": "Show workspace time zone in CSV header",
+      "description": "The CSV export header includes the workspace time zone name. Timestamp values are unchanged. Production deployment is unconfirmed.",
+      "release_id": "3.8.0",
+      "change_type": "bug_fix",
+      "status": "done",
+      "labels": [
+        "administrator-facing"
+      ]
+    }
+  ]
+}

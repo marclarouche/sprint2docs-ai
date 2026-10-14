@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "pull_request",
+  "fictional": true,
+  "project": "HarborDesk \u2014 fictional support platform",
+  "records": [
+    {
+      "id": "PR-890",
+      "title": "Owner MFA enrollment reminders",
+      "description": "Adds enrollment reminders for workspace owners. Enrollment is optional; mandatory enforcement is not implemented by this pull request.",
+      "status": "merged",
+      "release_id": "3.8.0",
+      "change_type": "enhancement",
+      "component": "support_workspace",
+      "related_ids": [
+        "HD-390"
+      ],
+      "labels": [
+        "administrator-facing"
+      ],
+      "url": "https://example.invalid/harbordesk/PR-890",
+      "owner": "Fictional HarborDesk team"
+    },
+    {
+      "id": "PR-891",
+      "title": "Add account deletion endpoint",
+      "description": "Draft pull request. Route and authorization design are still under review. No deletion endpoint is available in this draft.",
+      "status": "open",
+      "release_id": "3.8.0",
+      "change_type": "new_feature",
+      "component": "support_workspace",
+      "related_ids": [
+        "HD-391"
+      ],
+      "labels": [
+        "developer-facing"
+      ],
+      "url": "https://example.invalid/harbordesk/PR-891",
+      "owner": "Fictional HarborDesk team"
+    }
+  ]
+}

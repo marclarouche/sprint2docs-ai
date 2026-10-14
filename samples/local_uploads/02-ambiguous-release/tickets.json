@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "ticket",
+  "fictional": true,
+  "project": "HarborDesk \u2014 fictional support platform",
+  "records": [
+    {
+      "id": "HD-390",
+      "title": "Require MFA for workspace owners",
+      "description": "The ticket requests mandatory MFA for workspace owners. The implementation comment says enforcement remains optional. Product confirmation is needed before describing a mandatory policy.",
+      "status": "done",
+      "release_id": "3.8.0",
+      "change_type": "security_update",
+      "component": "support_workspace",
+      "related_ids": [
+        "PR-890"
+      ],
+      "labels": [
+        "administrator-facing"
+      ],
+      "url": "https://example.invalid/harbordesk/HD-390",
+      "owner": "Fictional HarborDesk team"
+    },
+    {
+      "id": "HD-391",
+      "title": "Add account deletion endpoint",
+      "description": "Engineering plans an account deletion endpoint. This ticket is in progress. Exact route, parameters, authorization and compatibility are not supplied.",
+      "status": "in_progress",
+      "release_id": "3.8.0",
+      "change_type": "new_feature",
+      "component": "support_workspace",
+      "related_ids": [
+        "PR-891"
+      ],
+      "labels": [
+        "developer-facing"
+      ],
+      "url": "https://example.invalid/harbordesk/HD-391",
+      "owner": "Fictional HarborDesk team"
+    },
+    {
+      "id": "HD-392",
+      "title": "Improve search response time",
+      "description": "The engineer reports that search feels faster in a development build. No measured latency, test environment, or benchmark data is supplied.",
+      "status": "done",
+      "release_id": "3.8.0",
+      "change_type": "performance_improvement",
+      "component": "support_workspace",
+      "related_ids": [],
+      "labels": [],
+      "url": "https://example.invalid/harbordesk/HD-392",
+      "owner": "Fictional HarborDesk team"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "fictional": true,
+  "record_count": 9,
+  "categories": {
+    "FLEET-142": "New Feature",
+    "FLEET-143": "Bug Fix",
+    "FLEET-144": "Unknown",
+    "PR-204": "New Feature",
+    "PR-205": "Bug Fix",
+    "PR-206": "Unknown",
+    "CL-240-01": "New Feature",
+    "CL-240-02": "Bug Fix"
+  },
+  "audience": "Uncertain",
+  "review_status": "pending"
+}

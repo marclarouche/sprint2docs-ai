@@ -1,11 +1,26 @@
-# Architecture — Milestone 1
+# Architecture — Milestone 3
 
-`app.py` provides only upload/demo controls, presentation, and session-memory storage. Public `import_file(bytes, filename, limits)` and `import_batch(sequence[ImportInput], limits)` interfaces accept typed inputs and return immutable `ImportResult` models. Core modules never import Streamlit or read session state.
+`app.py` owns controls, presentation and in-session state. `src/sprint2docs` contains the
+UI-independent processing engine. Immutable models preserve original identifiers, records,
+unknown metadata, file hashes and record locations.
 
-Data flow: bounded input → standard-library CSV/JSON or restricted Markdown parser → strict record validation → immutable source artifact/inventory with original metadata and provenance → source-preserving normalization → validation summary.
+Data flow: bounded import → normalization → deterministic analysis → release selection →
+bounded AI context batches → replaceable local Ollama adapter → structured output validation →
+source excerpt validation → pending customer/technical drafts and clarification questions.
 
-`models.py` defines schema versions, source identities, provenance, review states, validation issues, and future source-referenced claim containers. `importers.py` validates file structure and budgets and preserves accepted original records. `normalizer.py` copies supported fields without interpreting status as customer impact, deployment, or approval. `config.py` safely loads local resource configuration with PyYAML. No classifier, AI writer, impact engine, database, or placeholder adapter is introduced.
+`models.py`, `importers.py`, `normalizer.py`, and `config.py` implement ingestion.
+`analysis.py` adds reviewable associations, duplicate candidates, categories and audiences.
+`generation_models.py` defines strict, bounded response and result schemas.
+`ai_writer.py` selects release records, assembles source context, handles independent batch failures,
+and records prompt/validator versions, settings, model digest and source/analysis snapshots.
+`ollama_adapter.py` implements the `WriterAdapter` protocol using standard-library HTTP on literal
+loopback only. It performs no source URL fetching, tool execution or automatic model downloads.
+`claim_validator.py` resolves original IDs and exact excerpts to imported record provenance.
 
-Internal keys disambiguate IDs across files/types/record positions without changing original IDs. Related IDs stay explicit. Reference presence establishes provenance, not semantic proof. Future generation will require a replaceable Ollama adapter, source-reference validation, and human editorial review. No claims, documentation impacts, or generated release notes are created in this milestone.
+Invalid model output is omitted with safe diagnostics. Invalidly cited claims remain held for
+clarification, outside note drafts. Valid citations still require semantic verification by a human.
+No analysis or draft modifies original sources. New imports clear drafts; changes to reviewed
+analysis mark prior drafts stale. Completely failed regeneration keeps the last draft available.
 
-Specification: docs/PRD.md contains the formal PRD supplied in sprint2doc-prd.md. The original file is preserved. This milestone deliberately implements only the Foundation exit criterion; full-v1 acceptance criteria concerning generation and publication belong to later milestones.
+Documentation impact, editorial approval and exports remain later milestones. Nothing is
+published or persisted automatically. See milestone3.md for generation limits and operation.

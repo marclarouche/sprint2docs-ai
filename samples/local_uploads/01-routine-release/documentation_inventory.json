@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "documentation_inventory",
+  "fictional": true,
+  "project": "HarborDesk \u2014 fictional support platform",
+  "records": [
+    {
+      "document_id": "DOC-QUEUE",
+      "title": "Working with support queues",
+      "document_type": "user_guide",
+      "component": "support_workspace",
+      "covered_features": [
+        "queue filters",
+        "ticket assignment"
+      ],
+      "description": "Covers temporary queue filters; saved filters are not documented.",
+      "section_ids": [
+        "filtering-queues"
+      ]
+    },
+    {
+      "document_id": "DOC-EXPORT",
+      "title": "Exporting support tickets",
+      "document_type": "administrator_guide",
+      "component": "support_workspace",
+      "covered_features": [
+        "CSV export",
+        "workspace time zones"
+      ],
+      "description": "Describes CSV headers and timestamps.",
+      "section_ids": [
+        "csv-columns",
+        "time-zones"
+      ]
+    }
+  ]
+}
