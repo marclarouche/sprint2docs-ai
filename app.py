@@ -5,6 +5,7 @@ from pathlib import Path
 
 import streamlit as st
 
+from report_ui import render_editorial_exports
 from sprint2docs import ImportInput, import_batch
 from sprint2docs.ai_writer import generate_release, snapshot
 from sprint2docs.analysis import AUDIENCES, CATEGORIES, analyze, review_finding
@@ -27,7 +28,7 @@ def clear_result():
     st.session_state.pop("generated_release", None)
     st.session_state.pop("generation_error", None)
     for key in list(st.session_state):
-        if key.startswith("analysis_"):
+        if key.startswith(("analysis_", "editorial_", "report_")):
             del st.session_state[key]
 
 
@@ -295,8 +296,8 @@ if result is not None:
             f"DRAFT — release {generated.release_id}; status: {generated.status}; model: {generated.settings.model}"
         )
         for audience, label in [
-            ("customer", "Customer release notes"),
-            ("technical", "Technical release notes"),
+            ("customer", "Customer release notes (original model draft)"),
+            ("technical", "Technical release notes (original model draft)"),
         ]:
             st.write(label)
             notes = [
@@ -324,3 +325,5 @@ if result is not None:
                 st.json([e.model_dump(mode="json") for e in question.question.evidence])
         with st.expander("Generation details and limitations"):
             st.json(generated.model_dump(mode="json", exclude={"claims", "questions"}))
+
+        render_editorial_exports(result, st.session_state.analysis_result, generated)

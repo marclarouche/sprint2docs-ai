@@ -83,5 +83,19 @@ Failed batches preserve successful batches; a completely failed attempt preserve
 New imports clear drafts. Analysis changes mark earlier drafts stale. Session data is not persisted.
 
 See `docs/milestone2.md` and `docs/milestone3.md` for rules, validation, limits and measured results.
-Next milestone: documentation impact and update proposals. Editorial approval workflows and
-report exports remain later milestones.
+Next milestone: documentation impact and update proposals. Editorial review and report exports are now available; documentation impact remains a future milestone.
+
+
+## Editorial review and report exports
+
+After generation, use **Editorial review and reports**. Analysis approvals do not approve AI
+wording. Correct wording/categories, compare the cited evidence, and explicitly approve or reject
+each generated statement. Reject duplicate statements with a note naming the retained NOTE ID.
+Material edits reset approval. Clarification answers are separately attributed human input.
+
+Under **Download reports**, enter the product name and choose Draft or Approved statements only.
+Download the complete ZIP, customer/technical Markdown notes, full Markdown report, structured JSON
+analysis/traceability, or a print-friendly HTML report. Open the HTML in a browser and use Print /
+Save as PDF. JSON preserves all source records and excluded items for audit. Drafts can include
+pending items; approved-only output requires explicit editorial approval and current snapshots.
+Documentation impact proposals remain a future milestone. See docs/reporting.md.

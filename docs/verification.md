@@ -92,3 +92,16 @@ uv lock consistency and git whitespace checks passed. The frozen-dependency audi
 reported no known vulnerabilities. Validly cited whole alphanumeric IDs are exempted
 from quantity checking; invented quantities, uncited IDs and identifier prefixes remain
 flagged. Existing session drafts retain their original validation results.
+
+
+## Editorial review and export verification
+
+October 14, 2026: 114 tests passed. New tests cover explicit approval, material-edit
+approval reset (text/category/audience/evidence), held/rejected-note exclusion, stale
+snapshot gating, separate human answer attribution, duplicate candidates, complete
+JSON round-trips, nested source references, fixed ZIP paths, inert Markdown/HTML,
+and Streamlit editing/approval/download behavior without model calls. Ruff, formatting,
+strict mypy (12 core modules), lock consistency, whitespace and dependency audit passed;
+no known advisories were reported. Browser/native printer output was not exercised;
+HTML structure, print CSS and no-active-markup behavior were checked programmatically.
+Documentation impact generation remains outside this reporting change.
